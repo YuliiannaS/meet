@@ -76,7 +76,8 @@ And I can open the app from there easily.
 
 ### 6.Display Charts Visualizing Event Details:
 
- User Story: I want to see charts that show upcoming events in different cities, so I can understand which events are happening where.
+User Story: I want to see charts that show upcoming events in different cities, so I can understand which events are happening where.
+
 ### Scenario:
 Given I'm using the app;
 
@@ -85,3 +86,7 @@ When I scroll down or access a specific section;
 Then I should see charts that visually display upcoming events by city;
 
 And I can tell where events are happening.
+
+## Using serverless
+
+AWS Lambda function will be used to handle OAuth for users. It will also be used to get all events from the source and returning to the user.
