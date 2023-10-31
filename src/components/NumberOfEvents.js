@@ -1,18 +1,30 @@
 import React from 'react';
 
 const NumberOfEvents = ({ setNumberOfEvents }) => {
-    const handleNumberOfEventsChange = (event) => {
-        const selectedValue = parseInt(event.target.value, 10);
-        setNumberOfEvents(selectedValue);
+    const handleInputChanged = (event) => {
+        const value = event.target.value;
+        setNumberOfEvents(value);
+
+        if (isNaN(value)) {
+            alert('value is not a number');
+        } else if (value > 50) {
+            alert('maximum value is 50');
+        } else if (value <= 0) {
+            alert('minimum value is 1');
+        } else {
+            setNumberOfEvents(value);
+        }
     };
 
     return (
-        <select onChange={handleNumberOfEventsChange}>
-            <option key={1} value={10}>10</option>
-            <option key={2} value={20}>20</option>
-            <option key={3} value={50}>50</option>
-            <option key={4} value={100}>100</option>
-        </select>
+        <div id="number-of-events">
+            <input
+                type="text"
+                defaultValue="32"
+                onChange={handleInputChanged}
+                data-testid="numberOfEventsInput"
+            />
+        </div>
     );
 };
 
