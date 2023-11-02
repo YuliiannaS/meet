@@ -10,22 +10,21 @@ describe('<NumberOfEvents /> component', () => {
         NumberOfEventsComponent = render(<NumberOfEvents />);
     });
 
-  test('renders a select element with options', () => {
-    const selectElement = NumberOfEventsComponent.getByRole('combobox');
-    const options = NumberOfEventsComponent.getAllByRole('option');
-
-    expect(selectElement).toBeInTheDocument();
-    expect(options).toHaveLength(4);
+    test('renders an input element', () => {
+      const inputElement = NumberOfEventsComponent.getByRole('textbox');
+      expect(inputElement).toBeInTheDocument();
   });
 
-  test('calls setNumberOfEvents with the selected value', async () => {
-    const user = userEvent.setup();
+  test('calls setNumberOfEvents with the entered value', async () => {
     const setNumberOfEvents = jest.fn();
     NumberOfEventsComponent.rerender(<NumberOfEvents setNumberOfEvents={setNumberOfEvents} />);
-    const selectElement = NumberOfEventsComponent.getByRole('combobox');
+    const inputElement = NumberOfEventsComponent.getByRole('textbox');
 
-    await user.selectOptions(selectElement, "20");
+    userEvent.clear(inputElement);
+    expect(inputElement).toHaveValue('');
 
-    expect(setNumberOfEvents).toHaveBeenCalledWith(20);
-  });
+    await userEvent.type(inputElement, '20');
+
+    expect(setNumberOfEvents).toHaveBeenCalledWith('20');
+});
 });
