@@ -29,15 +29,12 @@ defineFeature(feature, test => {
 
     test('User should see a list of suggestions when they search for a city.', ({ given, when, then }) => {
         given('the main page is open', () => {
-
         });
 
         when('user starts typing in the city textbox', () => {
-
         });
 
         then('the user should recieve a list of cities (suggestions) that match what they’ve typed', () => {
-
         });
     });
 
