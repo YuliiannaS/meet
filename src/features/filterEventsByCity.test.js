@@ -40,23 +40,18 @@ defineFeature(feature, test => {
 
     test('User can select a city from the suggested list.', ({ given, and, when, then }) => {
         given('user was typing “Berlin” in the city textbox', () => {
-
         });
 
         and('the list of suggested cities is showing', () => {
-
         });
 
         when('the user selects a city (e.g., “Berlin, Germany”) from the list', () => {
-
         });
 
         then('their city should be changed to that city (i.e., “Berlin, Germany”)', () => {
-
         });
 
         and('the user should receive a list of upcoming events in that city', () => {
-
         });
     });
 });
