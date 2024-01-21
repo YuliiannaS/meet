@@ -22,6 +22,11 @@ export const extractLocations = (events) => {
     if (window.location.href.startsWith("http://localhost")) {
       return mockData;
     }
+
+    if (!navigator.onLine) {
+      const events = localStorage.getItem("lastEvents");
+      return events?JSON.parse(events):[];
+    }
   
     const token = await getAccessToken();
   
@@ -31,6 +36,7 @@ export const extractLocations = (events) => {
       const response = await fetch(url);
       const result = await response.json();
       if (result) {
+        localStorage.setItem("lastEvents", JSON.stringify(result.events));
         return result.events;
       } else return null; 
     }
@@ -83,7 +89,7 @@ export const extractLocations = (events) => {
   const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
     const response = await fetch(
-      'https://9hirqc55g7.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+      'https://9hirqc55g7.execute-api.us-east-1.amazonaws.com/dev/api/token/' + encodeCode
     );
     const { access_token } = await response.json();
     access_token && localStorage.setItem("access_token", access_token);

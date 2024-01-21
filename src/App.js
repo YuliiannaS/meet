@@ -3,7 +3,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import CitySearch from './components/CitySearch';
 import { extractLocations, getEvents } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, WarningAlert, ErrorAlert } from './components/Alert';
 
 import './App.css';
 
@@ -13,9 +13,15 @@ function App() {
   const [numberOfEvents, setNumberOfEvents] = useState(32);
   const [allLocations, setAllLocations] = useState([]);
   const [infoAlert, setInfoAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
 
   useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("You're offline - the data is not updating");
+    }
     fetchData();
   }, [currentCity]);
 
