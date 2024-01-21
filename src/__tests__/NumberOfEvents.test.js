@@ -7,7 +7,10 @@ describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
 
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents />);
+        NumberOfEventsComponent = render(<NumberOfEvents
+            setNumberOfEvents={() => { }}
+            setErrorAlert={() => { }}
+        />);
     });
 
     test('renders an input element', () => {
@@ -17,7 +20,7 @@ describe('<NumberOfEvents /> component', () => {
 
   test('calls setNumberOfEvents with the entered value', async () => {
     const setNumberOfEvents = jest.fn();
-    NumberOfEventsComponent.rerender(<NumberOfEvents setNumberOfEvents={setNumberOfEvents} />);
+    NumberOfEventsComponent.rerender(<NumberOfEvents setNumberOfEvents={setNumberOfEvents} setErrorAlert={() => { }}/>);
     const inputElement = NumberOfEventsComponent.getByRole('textbox');
 
     userEvent.clear(inputElement);

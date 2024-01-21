@@ -1,19 +1,21 @@
 import React from 'react';
 
-const NumberOfEvents = ({ setNumberOfEvents }) => {
+const NumberOfEvents = ({ setNumberOfEvents, setErrorAlert }) => {
     const handleInputChanged = (event) => {
         const value = event.target.value;
         setNumberOfEvents(value);
 
+        let errorText;
         if (isNaN(value)) {
-            alert('value is not a number');
+            errorText = 'Value is not a number';
         } else if (value > 50) {
-            alert('maximum value is 50');
+            errorText = 'Maximum value is 50';
         } else if (value <= 0) {
-            alert('minimum value is 1');
+            errorText = 'Minimum value is 1';
         } else {
             setNumberOfEvents(value);
         }
+        setErrorAlert(errorText);
     };
 
     return (
