@@ -4,6 +4,8 @@ import NumberOfEvents from './components/NumberOfEvents';
 import CitySearch from './components/CitySearch';
 import { extractLocations, getEvents } from './api';
 import { InfoAlert, WarningAlert, ErrorAlert } from './components/Alert';
+import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 
 import './App.css';
 
@@ -37,8 +39,8 @@ function App() {
   return (
     <div className="App">
       <div className="alerts-container">
-        {infoAlert?.length ? <InfoAlert text={infoAlert}/> : null}
-        {errorAlert?.length ? <ErrorAlert text={errorAlert}/> : null}
+        {infoAlert?.length ? <InfoAlert text={infoAlert} /> : null}
+        {errorAlert?.length ? <ErrorAlert text={errorAlert} /> : null}
       </div>
       <CitySearch
         setCurrentCity={setCurrentCity}
@@ -46,6 +48,10 @@ function App() {
         setInfoAlert={setInfoAlert}
       />
       <NumberOfEvents setNumberOfEvents={setNumberOfEvents} setErrorAlert={setErrorAlert} />
+      <div className="charts-container">
+        <EventGenresChart events={events} />
+        <CityEventsChart allLocations={allLocations} events={events} />
+      </div>
       <EventList city={currentCity} events={events} numberOfEvents={numberOfEvents} />
     </div>
   );
