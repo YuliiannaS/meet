@@ -12,6 +12,8 @@ const CityEventsChart = ({ allLocations, events }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        console.log('setting data');
+        console.dir(getData());
         setData(getData());
     }, [events]);
 
@@ -26,14 +28,14 @@ const CityEventsChart = ({ allLocations, events }) => {
 
     return (
         <ResponsiveContainer width="49%" height={400}>
-      <ScatterChart
-        margin={{
-          top: 20,
-          right: 20,
-          bottom: 60,
-          left: -20,
-        }}
-      >
+            <ScatterChart
+                margin={{
+                    top: 20,
+                    right: 20,
+                    bottom: 60,
+                    left: -20,
+                }}
+            >
                 <CartesianGrid />
                 <XAxis
                     type="category" dataKey="city" name="City"
