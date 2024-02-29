@@ -25,7 +25,7 @@ const EventGenresChart = ({ events }) => {
                 percentage: (filteredEvents.length / totalEvents) * 100
             };
         });
-        return data;
+        return data.filter(d => d.value > 0);
     };
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF'];

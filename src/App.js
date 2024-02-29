@@ -25,7 +25,7 @@ function App() {
       setWarningAlert("You're offline - the data is not updating");
     }
     fetchData();
-  }, [currentCity]);
+  }, [currentCity, numberOfEvents]);
 
   const fetchData = async () => {
     const allEvents = await getEvents();
